@@ -1,0 +1,20 @@
+sno <-c(1,2,3,4,5,6,7,8,9,10)
+name <-c("Arun12","Brij","cat","D3umb","Elep:hant","Finn"," ","Hee na","India","Joker")
+rollno <-c(4,86,49,15,2,46,NA,88,12,99)
+marks <-c(10,56,49,76,98,20,35,64,55,15)
+x<- data.frame(sno,name,rollno,marks, stringsAsFactors = FALSE)
+library(tm)
+library(SnowballC)
+corpus = VCorpus(VectorSource(x$name))
+corpus = tm_map(corpus, content_transformer(tolower))
+corpus=tm_map(corpus,removeNumbers)
+Corpus=tm_filter(corpus,removePunctuation)
+
+bag=DocumentTermMatrix(co)
+a<-readDataframe(x,"en",NULL)
+meta(a)
+inspect(a)
+stemCompletion()
+
+a<-rnorm(5,10)
+a
