@@ -1,0 +1,28 @@
+library(twitteR)
+Sys.setlocale(category = "LC_ALL", locale = "C")
+consumer_key<-"HbMx25TS**********\R2r8TrZ"
+consumer_secret<-"NWKoZiS12NpJG**********NPzxqHd55FwWX7lMd6qJohEJGFS"
+access_token<-"3545155273-hddlIJQ6JUWFO**********CG92GqubpUmsJFh4"
+access_token_secret<-	"qp9Ay84MTAsvEYdGTJFzuT9**********ghOrAACoM2c7"
+setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_token_secret)
+
+# Get tweets related to Fuelchallenge
+tweets <- searchTwitteR('#FuelChallenge',200)
+df <- twListToDF(tweets)
+class(df)
+a<-df[c(1,11,12)]
+
+library(tm)
+corpus = VCorpus(VectorSource(a$text))
+corpus = tm_map(corpus, content_transformer(tolower))
+corpus=tm_map(corpus,removeNumbers)
+Corpus=tm_map(corpus,removePunctuation)
+removeURL<-gsub("(f|ht)tp(s?)://(.*)[.][a-z]+", "", removeURL)
+#removeURL<function(x) gsub("http[[:alnum:][:punct:]]*", "", x) 
+corpus<-tm_map(corpus,content_transformer(removeURL))
+a<-data.frame(text = sapply(myCorpus, as.character), stringsAsFactors = FALSE)
+
+tb$text<-lapply(tb$text,function(row) iconv(row,"latin1","ASCII",sub=""))
+a$text<-gsub("(f|ht)tp(s?)://(.*)[.][a-z]+", "", a$text)
+sample<-a$text
+head
