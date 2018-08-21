@@ -38,7 +38,7 @@ getmode <- function(v) {
   uniqv[which.max(tabulate(match(v, uniqv)))]
 }  
 result1 <- getmode(dataset$Age)
-result2 <- getmode(dataset$Age)
+result2 <- getmode(dataset$Salary)
 
 #Applied the function on Age and Salary
 dataset$Age = ifelse(is.na(dataset$Age),
